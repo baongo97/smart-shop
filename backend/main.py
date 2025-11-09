@@ -270,7 +270,7 @@ Return ONLY a JSON object with an 'ids' key containing an array of product IDs. 
                 }
             ],
             temperature=0.7,
-            max_tokens=300,
+            max_tokens=500,
             response_format={"type": "json_object"}
         )
 
