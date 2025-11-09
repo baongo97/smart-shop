@@ -266,7 +266,9 @@ Recommend products based on the preference:
 - quality: premium quality items or high popularity
 - balanced: best overall value considering price, quality, stock
 
-Return ONLY a JSON object with an 'ids' key containing an array of product IDs. Example: {{"ids": [1, 4, 10, 13]}}"""
+Return ONLY a JSON object with an 'ids' key containing an array of product IDs. Example: {{"ids": [1, 4, 10, 13]}}
+Each items requested must be represented by ONLY one product ID in the response.
+Do not include any other text or explanations."""
                 }
             ],
             temperature=0.7,
