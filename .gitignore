@@ -1,2 +1,5 @@
 .venv
 .env
+smart-navigating/
+smartNavigatingClient.js
+backend/smart_navigating.py

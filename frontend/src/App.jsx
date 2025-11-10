@@ -13,6 +13,7 @@ const App = () => {
   const [view, setView] = useState('input'); // 'input' or 'trolley'
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [otherInfo, setOtherInfo] = useState('');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,7 +39,8 @@ const App = () => {
       },
       body: JSON.stringify({
         items: itemList,
-        preference: preference
+        preference: preference,
+        other_info: otherInfo
       })
     });
 
@@ -104,7 +106,7 @@ const App = () => {
       const itemList = items.toLowerCase().split('\n').filter(i => i.trim());
       
       // Call backend API
-      const recommendations = await callBackendAPI(itemList, preference);
+      const recommendations = await callBackendAPI(itemList, preference, otherInfo);
 
       const initialQuantities = {};
       recommendations.forEach(item => {
@@ -168,7 +170,6 @@ const App = () => {
               {/* Manual Input */}
               <div>
                 <label className="flex items-center gap-2 text-lg font-semibold text-gray-700 mb-3">
-                  <List className="w-5 h-5" />
                   Your Shopping List
                 </label>
                 <textarea
@@ -178,6 +179,21 @@ const App = () => {
                   className="w-full h-40 p-4 border-2 border-gray-200 rounded-xl focus:border-indigo-400 focus:outline-none resize-none text-lg"
                 />
               </div>
+
+              {/*Other info*/}
+              <div>
+                <label className="flex items-center gap-2 text-lg font-semibold text-gray-700 mb-3">
+                  Other Information (Optional)
+                </label>
+                <input
+                  type="text"
+                  value={otherInfo}
+                  onChange={(e) => setOtherInfo(e.target.value)}
+                  placeholder="e.g., gluten-free, nut allergy, vegan"
+                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-indigo-400 focus:outline-none text-lg"
+                />
+              </div>
+              {/* === END OF NEW BLOCK === */}
 
               {/* Photo Upload */}
               <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-indigo-400 transition-colors">

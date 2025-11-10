@@ -34,10 +34,18 @@ except Exception as e:
     PRODUCT_DATABASE = []
     print(f"Warning: Failed to load product database from {PRODUCTS_FILE}: {e}")
 
+# Attempt to mount smart-navigating router if available (non-fatal)
+try:
+    import smart_navigating
+    app.include_router(smart_navigating.router)
+except Exception as e:
+    print(f"Warning: Failed to include smart_navigating router: {e}")
+
 # Request/Response models
 class RecommendationRequest(BaseModel):
     items: List[str]
     preference: str
+    other_info: str = ""
 
 class ImageExtractionRequest(BaseModel):
     image: str
@@ -70,12 +78,14 @@ If it's a meal, search online for main ingredients, recommend specific products 
 
 Items requested: {', '.join(request.items)}
 Shopping preference: {request.preference}
+Other Information: {request.other_info}
 Product Database: {json.dumps(PRODUCT_DATABASE)}
 
 Recommend products based on the preference:
 - budget: cheapest options with good stock
 - quality: premium quality items or high popularity
 - inspiration: recommend two more items that customer might like
+- **Crucially, all recommendations MUST respect the 'Other Information'. For example, if 'gluten-free' is mentioned, only recommend products where the 'tags' list includes 'gluten-free'. If no products match, do not recommend one for that item.**
 
 Return ONLY a JSON object with an 'ids' key containing an array of product IDs. Example: {{"ids": [1, 4, 10, 13]}}
 Each items requested must be represented by ONLY ONE product ID in the response.
@@ -83,7 +93,7 @@ DO NOT include more than one product ID per requested item.
 DO NOT include any other text or explanations."""
                 }
             ],
-            temperature=0.7,
+            temperature=0.3,
             max_tokens=4000,
             response_format={"type": "json_object"}
         )
