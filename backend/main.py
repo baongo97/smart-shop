@@ -34,13 +34,6 @@ except Exception as e:
     PRODUCT_DATABASE = []
     print(f"Warning: Failed to load product database from {PRODUCTS_FILE}: {e}")
 
-# Attempt to mount smart-navigating router if available (non-fatal)
-try:
-    import smart_navigating
-    app.include_router(smart_navigating.router)
-except Exception as e:
-    print(f"Warning: Failed to include smart_navigating router: {e}")
-
 # Request/Response models
 class RecommendationRequest(BaseModel):
     items: List[str]
