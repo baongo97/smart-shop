@@ -6,7 +6,7 @@ const API_BASE_URL = 'http://localhost:8000';
 
 const App = () => {
   const [items, setItems] = useState('');
-  const [preference, setPreference] = useState('inspiration');
+  const [preference, setPreference] = useState('');
   const [trolley, setTrolley] = useState([]);
   const [loading, setLoading] = useState(false);
   const [extracting, setExtracting] = useState(false);
