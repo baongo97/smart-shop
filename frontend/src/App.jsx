@@ -344,7 +344,13 @@ const App = () => {
                 <span className="text-xl font-semibold text-gray-700">Total:</span>
                 <span className="text-3xl font-bold text-indigo-600">${totalPrice.toFixed(2)}</span>
               </div>
-              <button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl">
+              <button 
+                onClick={() => {
+                  const trolleyIds = trolley.map(item => item.id);
+                  window.location.href = `http://localhost:8080/?items=${trolleyIds.join(',')}`;
+                }}
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
+              >
                 Find your items in store
               </button>
             </div>

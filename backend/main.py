@@ -93,7 +93,7 @@ DO NOT include more than one product ID per requested item.
 DO NOT include any other text or explanations."""
                 }
             ],
-            temperature=0.3,
+            temperature=0.1,
             max_tokens=4000,
             response_format={"type": "json_object"}
         )
