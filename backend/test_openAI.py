@@ -1,3 +1,5 @@
+# Author: Brian Ngo 11/11/2025
+# Email: ngbao128@gmail.com
 from openai import OpenAI
 import os
 from dotenv import load_dotenv

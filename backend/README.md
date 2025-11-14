@@ -1,11 +1,13 @@
-# Smart-Shop Backend (FastAPI)
+# Smart Shopping Backend
+### by **Gia Bao Ngo**  
+📧 ngbao128@gmail.com
 
 This is the backend service for the Smart Grocery List project. It is a small FastAPI application that exposes product data and uses the OpenAI client to generate product recommendations based on a list of requested items and a shopping preference.
 
 ## What it does
 
-- Serves a static in-memory product database via `/api/products`.
-- Exposes a recommendation endpoint `/api/recommend` that sends the user's items and preference to the OpenAI API and expects a JSON response containing product IDs. The service returns the matched product objects from the in-memory database.
+- Serves a static json product database via `/api/products`.
+- Exposes a recommendation endpoint `/api/recommend` that sends the user's items and preference to the OpenAI API and expects a JSON response containing product IDs. The service returns the matched product objects from the json database.
 - Basic CORS is enabled for the frontend origin `http://localhost:5173` (adjust as needed).
 
 ## Prerequisites
@@ -24,6 +26,10 @@ If your environment uses a virtualenv or venv, activate that first.
 
 Create a `.env` file in the `backend/` directory or set the environment variable directly. Example `.env` (do NOT commit real keys):
 
+```bash
+cp .env.example .env
+```
+
 ```
 OPENAI_API_KEY=sk-...
 ```
@@ -34,12 +40,6 @@ The app uses `python-dotenv` to load `.env` automatically.
 
 You can run the app either with uvicorn directly or with the small `if __name__ == '__main__'` entry in `main.py`.
 
-Run with uvicorn (recommended for development):
-
-```bash
-cd backend
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
 
 Or run the module with Python (the file contains a `uvicorn.run` entry):
 
@@ -110,6 +110,3 @@ curl -X POST http://localhost:8000/api/recommend \
 - Persist the product database in a real database (SQLite/Postgres) rather than keeping it in memory.
 - Add unit tests and simple integration tests for the endpoints.
 - Add request validation and rate limiting for the `/api/recommend` endpoint.
-
---
-Generated README for the backend FastAPI application.

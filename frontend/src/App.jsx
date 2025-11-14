@@ -1,3 +1,5 @@
+// Author: Brian Ngo 11/11/2025
+// Email: ngbao128@gmail.com
 import React, { useState } from 'react';
 import { ShoppingCart, Camera, List, Sparkles, Package, DollarSign, Zap, Award } from 'lucide-react';
 import { useEffect } from 'react';

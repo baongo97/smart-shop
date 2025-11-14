@@ -1,3 +1,5 @@
+# Author: Brian Ngo 11/11/2025
+# Email: ngbao128@gmail.com
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
